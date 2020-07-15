@@ -1,8 +1,15 @@
-class Todo {
+import java.util.Comparator;
+
+class Todo implements Comparable<Todo>{
     private Integer userId;
     private Integer id;
     private String title;
     private Boolean completed;
+
+    @Override
+    public int compareTo(Todo todo){
+        return this.title.compareTo(todo.title);
+    }
 
     public Integer getUserId() {
         return userId;

@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class main {
@@ -16,15 +17,13 @@ public class main {
             String todoJson =
                     FileUtils.
                             readFileToString(new File("E:\\Estudos\\avançado\\bootcampigtiJAVA\\src\\main\\java\\data\\todo.js"), "UTF-8");
-            Type todoListType = new TypeToken<ArrayList<Todo>>() {}.getType();
+            Type todoListType = new TypeToken<ArrayList<Todo>>() {
+            }.getType();
             Gson gson = new GsonBuilder().create();
             todos = gson.fromJson(todoJson, todoListType);
-            todos = (ArrayList) todos.stream()
-                    .filter(item -> item.getCompleted().equals(true))
-                    .collect(Collectors.toList());
-
-            System.out.println(todos.size());
-            for (Todo todo: todos) {
+            Collections.sort(todos);
+            for (Todo todo :
+                    todos) {
                 System.out.println(todo.getTitle());
             }
 
